@@ -8,9 +8,13 @@
 - **Organizador principal:** Jose Moar
 
 ## Precios
-- Sin barra libre: ~87€
-- Con barra libre 3h: ~100€
+- Base: ~87€
+- Barra libre 3h (opcional): +39€
 - Anticipo: 25€
+
+## Asistentes (actualizado 24/1/26)
+- Confirmados: 80
+- Pensandolo: 45
 
 ## Cuenta bancaria
 - IBAN: ES37 2080 0000 7330 4030 3591
