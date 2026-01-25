@@ -16,11 +16,13 @@
 - Confirmados: 80
 - Pensandolo: 45
 
-## Ultimos cambios (24/1/26)
+## Ultimos cambios (25/1/26)
+- Logo cambiado a SVG (img/logo-eet.svg) desde Wikipedia
+- Logo en blanco en el hero con filter: brightness(0) invert(1)
+
+## Cambios anteriores (24/1/26)
 - Barra libre es opcional: +39€
 - Eliminado formulario de contacto
-- Anadido logo escuela (img/logo-eet.png) de https://teleco.uvigo.es
-- Logo en blanco en el hero con filter: brightness(0) invert(1)
 
 ## Cuenta bancaria
 - IBAN: ES37 2080 0000 7330 4030 3591
