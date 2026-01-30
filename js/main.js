@@ -1,4 +1,4 @@
-// Navegación móvil
+// Navegacion movil
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Cerrar menú al hacer clic en un enlace
+    // Cerrar menu al hacer clic en un enlace
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
@@ -28,30 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Formulario de contacto
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const mensaje = document.getElementById('mensaje').value;
-
-            // Aquí puedes integrar con un servicio como Formspree, EmailJS, etc.
-            // Por ahora, mostramos un mensaje y abrimos el cliente de email
-
-            const mailtoLink = `mailto:teleco25vigo@gmail.com?subject=Contacto 25 Aniversario - ${encodeURIComponent(nombre)}&body=${encodeURIComponent(mensaje)}%0A%0AContacto: ${encodeURIComponent(email)}`;
-
-            window.location.href = mailtoLink;
-
-            // Alternativa: mostrar mensaje de confirmación
-            // alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            // contactForm.reset();
-        });
-    }
-
-    // Animación suave para los elementos al hacer scroll
+    // Animacion suave para los elementos al hacer scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -66,25 +43,117 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Aplicar animación a las tarjetas y elementos
     document.querySelectorAll('.evento-card, .galeria-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    // Gallery & Lightbox
+    initGallery();
 });
 
-// Función para añadir fotos a la galería (útil para los colaboradores)
-function addPhotoToGallery(imageUrl, altText) {
-    const galleryGrid = document.querySelector('.galeria-grid');
-    const placeholder = galleryGrid.querySelector('.galeria-placeholder');
+// Gallery photos - add your photos here
+// Each entry: { src: 'img/galeria/filename.jpg', alt: 'Description' }
+var GALLERY_PHOTOS = [
+    // Example:
+    // { src: 'img/galeria/foto1.jpg', alt: 'Graduacion 2001' },
+    // { src: 'img/galeria/foto2.jpg', alt: 'Paso del Ecuador' },
+];
 
-    if (placeholder) {
-        const parent = placeholder.parentElement;
-        parent.innerHTML = `<img src="${imageUrl}" alt="${altText || 'Foto de la promoción'}">`;
+function initGallery() {
+    var grid = document.getElementById('galeria-grid');
+    var emptyMsg = document.getElementById('galeria-empty');
+    var ctaMsg = document.getElementById('galeria-cta');
+
+    if (!grid) return;
+
+    if (GALLERY_PHOTOS.length === 0) {
+        emptyMsg.style.display = '';
+        ctaMsg.style.display = 'none';
+        return;
     }
+
+    emptyMsg.style.display = 'none';
+    ctaMsg.style.display = '';
+
+    GALLERY_PHOTOS.forEach(function(photo, i) {
+        var item = document.createElement('div');
+        item.className = 'galeria-item';
+        item.setAttribute('data-index', i);
+        var img = document.createElement('img');
+        img.src = photo.src;
+        img.alt = photo.alt || '';
+        img.loading = 'lazy';
+        item.appendChild(img);
+        grid.appendChild(item);
+
+        item.addEventListener('click', function() {
+            openLightbox(i);
+        });
+    });
+
+    // Re-observe for scroll animation
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    grid.querySelectorAll('.galeria-item').forEach(function(el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.cursor = 'pointer';
+        observer.observe(el);
+    });
+
+    // Lightbox controls
+    var lightbox = document.getElementById('lightbox');
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-prev').addEventListener('click', function() { navigateLightbox(-1); });
+    document.getElementById('lightbox-next').addEventListener('click', function() { navigateLightbox(1); });
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
 }
 
-// Ejemplo de uso:
-// addPhotoToGallery('img/foto1.jpg', 'Graduación 2000');
+var currentIndex = 0;
+
+function openLightbox(index) {
+    currentIndex = index;
+    var lightbox = document.getElementById('lightbox');
+    updateLightboxImage();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function navigateLightbox(dir) {
+    currentIndex = (currentIndex + dir + GALLERY_PHOTOS.length) % GALLERY_PHOTOS.length;
+    updateLightboxImage();
+}
+
+function updateLightboxImage() {
+    var photo = GALLERY_PHOTOS[currentIndex];
+    document.getElementById('lightbox-img').src = photo.src;
+    document.getElementById('lightbox-img').alt = photo.alt || '';
+    document.getElementById('lightbox-caption').textContent = photo.alt || '';
+    document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + GALLERY_PHOTOS.length;
+}

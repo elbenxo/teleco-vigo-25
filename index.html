@@ -214,35 +214,29 @@
                 </div>
             </div>
 
-            <div class="galeria-grid">
-                <div class="galeria-item">
-                    <div class="galeria-placeholder">
-                        <span>📷</span>
-                        <p>Proximamente</p>
-                    </div>
+            <div class="galeria-grid" id="galeria-grid">
+                <!-- Photos will be added here. Example:
+                <div class="galeria-item" data-index="0">
+                    <img src="img/galeria/foto1.jpg" alt="Descripcion de la foto">
                 </div>
-                <div class="galeria-item">
-                    <div class="galeria-placeholder">
-                        <span>📷</span>
-                        <p>Proximamente</p>
-                    </div>
-                </div>
-                <div class="galeria-item">
-                    <div class="galeria-placeholder">
-                        <span>📷</span>
-                        <p>Proximamente</p>
-                    </div>
-                </div>
-                <div class="galeria-item">
-                    <div class="galeria-placeholder">
-                        <span>📷</span>
-                        <p>Proximamente</p>
-                    </div>
-                </div>
+                -->
             </div>
-            <p class="galeria-cta">Tienes fotos de la epoca? Compartelas en el grupo de WhatsApp</p>
+            <p class="galeria-empty" id="galeria-empty">Aun no hay fotos. Tienes fotos de la epoca? Compartelas en el grupo de WhatsApp</p>
+            <p class="galeria-cta" id="galeria-cta" style="display:none">Tienes fotos de la epoca? Compartelas en el grupo de WhatsApp</p>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+        <button class="lightbox-prev" id="lightbox-prev" aria-label="Anterior">&#10094;</button>
+        <button class="lightbox-next" id="lightbox-next" aria-label="Siguiente">&#10095;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <p class="lightbox-caption" id="lightbox-caption"></p>
+            <p class="lightbox-counter" id="lightbox-counter"></p>
+        </div>
+    </div>
 
     <!-- Contacto Section -->
     <section id="contacto" class="contacto">

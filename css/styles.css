@@ -623,10 +623,101 @@ section h2::after {
     margin-bottom: 10px;
 }
 
-.galeria-cta {
+.galeria-cta,
+.galeria-empty {
     text-align: center;
     color: var(--color-gray);
     font-style: italic;
+}
+
+.galeria-empty {
+    padding: 60px 20px;
+    font-size: 1.1rem;
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    text-align: center;
+}
+
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0.7;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    opacity: 1;
+}
+
+.lightbox-close {
+    top: 20px;
+    right: 25px;
+    font-size: 2.5rem;
+    z-index: 2001;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    padding: 15px;
+}
+
+.lightbox-prev {
+    left: 15px;
+}
+
+.lightbox-next {
+    right: 15px;
+}
+
+.lightbox-caption {
+    color: white;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.lightbox-counter {
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+    font-size: 0.85rem;
 }
 
 /* Contacto Section */
