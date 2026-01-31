@@ -1,7 +1,8 @@
 // Navegacion movil
 document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    var navToggle = document.querySelector('.nav-toggle');
+    var navLinks = document.querySelector('.nav-links');
+    var navbar = document.querySelector('.navbar');
 
     if (navToggle) {
         navToggle.addEventListener('click', function() {
@@ -10,44 +11,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Cerrar menu al hacer clic en un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.addEventListener('click', function() {
             navLinks.classList.remove('active');
         });
     });
 
-    // Cambiar estilo del navbar al hacer scroll
+    // Navbar scroll effect
     window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.padding = '10px 0';
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        if (window.scrollY > 40) {
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.padding = '15px 0';
-            navbar.style.boxShadow = 'none';
+            navbar.classList.remove('scrolled');
         }
     });
 
-    // Animacion suave para los elementos al hacer scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
+    // Scroll reveal for .reveal and .stagger elements
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.evento-card, .galeria-item').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+    document.querySelectorAll('.reveal, .stagger').forEach(function(el) {
+        revealObserver.observe(el);
     });
 
     // Gallery & Lightbox
@@ -59,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
 var GALLERY_PHOTOS = [
     // Example:
     // { src: 'img/galeria/foto1.jpg', alt: 'Graduacion 2001' },
-    // { src: 'img/galeria/foto2.jpg', alt: 'Paso del Ecuador' },
 ];
 
 function initGallery() {
@@ -92,24 +80,6 @@ function initGallery() {
         item.addEventListener('click', function() {
             openLightbox(i);
         });
-    });
-
-    // Re-observe for scroll animation
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    grid.querySelectorAll('.galeria-item').forEach(function(el) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        el.style.cursor = 'pointer';
-        observer.observe(el);
     });
 
     // Lightbox controls

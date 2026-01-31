@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2001: Odisea en el Cuvi - 25 Aniversario | Teleco Vigo</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navegacion -->
@@ -34,21 +31,33 @@
     <header class="hero">
         <div class="hero-content">
             <img src="img/logo-eet.svg" alt="Escola de Enxenaria de Telecomunicacion" class="hero-logo">
-            <h1>2001: Odisea en el Cuvi</h1>
-            <p class="hero-subtitle">25 Aniversario - Ingenieria de Telecomunicaciones</p>
-            <p class="hero-date">Universidad de Vigo - Promocion 2001</p>
+            <span class="hero-eyebrow">25 Aniversario</span>
+            <h1>2001: Odisea <em>en el Cuvi</em></h1>
+            <p class="hero-subtitle">Ingenieria de Telecomunicaciones &middot; Universidad de Vigo</p>
+            <p class="hero-date">Sabado 7 de Noviembre de 2026 &middot; Palacio de La Oliva</p>
             <div class="hero-cta">
                 <a href="#inscripcion" class="btn btn-primary">Reserva tu plaza</a>
-                <a href="#evento" class="btn btn-secondary">Mas informacion</a>
+                <a href="#evento" class="btn btn-secondary">Descubre el evento</a>
             </div>
         </div>
     </header>
+
+    <!-- Orla -->
+    <div class="orla-section">
+        <div class="orla-wrapper">
+            <span class="orla-label">Promocion 2001</span>
+            <div class="orla-frame reveal">
+                <img src="img/IMG20260131195650_encuadrada.jpg" alt="Orla de la Promocion 2001 - Ingenieria de Telecomunicaciones, Universidad de Vigo">
+            </div>
+            <p class="orla-caption">Escola de Enxenaria de Telecomunicacion &middot; Promocion 2001</p>
+        </div>
+    </div>
 
     <!-- Evento Section -->
     <section id="evento" class="evento">
         <div class="container">
             <h2>El Evento</h2>
-            <div class="evento-grid">
+            <div class="evento-grid stagger">
                 <div class="evento-card">
                     <div class="evento-icon">📅</div>
                     <h3>Fecha</h3>
@@ -83,26 +92,26 @@
         <div class="container">
             <h2>Que incluye</h2>
             <div class="info-grid">
-                <div class="info-item">
+                <div class="info-item reveal">
                     <h3>🍽️ Comida Cocktail</h3>
                     <p>2 horas de comida tipo cocktail con <strong>cocina de Pepe Solla</strong>. Incluye vinos D.O. Rias Baixas y D.O. Rioja.</p>
                     <p class="highlight">Mesa de ostras naturales abiertas al momento</p>
                 </div>
-                <div class="info-item">
+                <div class="info-item reveal">
                     <h3>🎵 DJ y Fiesta</h3>
                     <p>4 horas de fiesta con DJ profesional. Opcion de barra libre de 3 horas disponible.</p>
                 </div>
-                <div class="info-item">
+                <div class="info-item reveal">
                     <h3>📸 Fotomaton</h3>
                     <p>Fotomaton profesional durante todo el evento para llevarte los mejores recuerdos.</p>
                 </div>
-                <div class="info-item">
+                <div class="info-item reveal">
                     <h3>🎬 Videografo</h3>
                     <p>Grabacion profesional del evento para que nadie se pierda ningun momento.</p>
                 </div>
             </div>
 
-            <div class="precio-box">
+            <div class="precio-box reveal">
                 <h3>Precio estimado</h3>
                 <div class="precio-opciones">
                     <div class="precio-opcion">
@@ -123,7 +132,7 @@
     <section id="hotel" class="hotel">
         <div class="container">
             <h2>Alojamiento</h2>
-            <div class="hotel-card">
+            <div class="hotel-card reveal">
                 <div class="hotel-info">
                     <h3>AC Palacio Universal by Marriott</h3>
                     <p>Hemos negociado un descuento de grupo para los asistentes:</p>
@@ -172,7 +181,7 @@
                     </div>
                 </div>
 
-                <div class="inscripcion-stats">
+                <div class="inscripcion-stats stagger">
                     <div class="stat">
                         <span class="stat-number">80</span>
                         <span class="stat-label">Confirmados</span>
@@ -201,7 +210,7 @@
             <h2>Recuerdos</h2>
             <p class="galeria-intro">Algunas reliquias de nuestra epoca en el Cuvi</p>
 
-            <div class="video-destacado">
+            <div class="video-destacado reveal">
                 <h3>Video del Paso del Ecuador</h3>
                 <div class="video-container">
                     <iframe
@@ -214,13 +223,7 @@
                 </div>
             </div>
 
-            <div class="galeria-grid" id="galeria-grid">
-                <!-- Photos will be added here. Example:
-                <div class="galeria-item" data-index="0">
-                    <img src="img/galeria/foto1.jpg" alt="Descripcion de la foto">
-                </div>
-                -->
-            </div>
+            <div class="galeria-grid" id="galeria-grid"></div>
             <p class="galeria-empty" id="galeria-empty">Aun no hay fotos. Tienes fotos de la epoca? Compartelas en el grupo de WhatsApp</p>
             <p class="galeria-cta" id="galeria-cta" style="display:none">Tienes fotos de la epoca? Compartelas en el grupo de WhatsApp</p>
         </div>
@@ -255,7 +258,6 @@
                     <h3>Colaboradores</h3>
                     <p>Gracias a Eva, Diego, Fidel y todos los que estan ayudando a hacer este evento posible.</p>
                 </div>
-
             </div>
         </div>
     </section>
